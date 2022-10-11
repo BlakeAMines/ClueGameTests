@@ -15,15 +15,12 @@ public class TestBoardCell
 	
 	public TestBoardCell(int inRow, int inCol)
 	{
-		//Test Data
 			row = inRow;
 			
 			col = inCol;
 			
 			adjacencyList = new HashSet<TestBoardCell>();
-					
-		//End Test Data
-		
+							
 	} //end constructor
 	
 	public void addAdjacency(TestBoardCell cell)
@@ -44,7 +41,7 @@ public class TestBoardCell
 		
 	} //end setRoom
 	
-	public boolean isRoom()
+	public boolean getRoom()
 	{
 		return isRoom;
 		

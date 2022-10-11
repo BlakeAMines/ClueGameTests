@@ -28,8 +28,6 @@ class BoardTestsExp
 		//Top Left Cell
 		TestBoardCell testCell = board.getCell(0, 0);
 		
-		board.calcAdjList(testCell);
-		
 		Set<TestBoardCell> testAdjList = testCell.getAdjList();
 		
 		Assert.assertEquals(2, testAdjList.size());
@@ -47,8 +45,6 @@ class BoardTestsExp
 		board.calcAdjList(testCell);
 		
 		Set<TestBoardCell> testAdjList = testCell.getAdjList();
-				
-		board.calcAdjList(testCell);
 		
 		Assert.assertEquals(2, testAdjList.size());
 		Assert.assertTrue(testAdjList.contains(board.getCell(2, 3)));
@@ -61,8 +57,6 @@ class BoardTestsExp
 	{
 		//Far Left Edge
 		TestBoardCell testCell = board.getCell(1, 0);
-		
-		board.calcAdjList(testCell);
 		
 		Set<TestBoardCell> testAdjList = testCell.getAdjList();
 				
@@ -79,21 +73,12 @@ class BoardTestsExp
 		//Far Right Edge
 		TestBoardCell testCell = board.getCell(1, 3);
 		
-		board.calcAdjList(testCell);
-		
 		Set<TestBoardCell> testAdjList = testCell.getAdjList();
 		
 		Assert.assertEquals(3, testAdjList.size());
 		Assert.assertTrue(testAdjList.contains(board.getCell(0, 3)));
 		Assert.assertTrue(testAdjList.contains(board.getCell(1, 2)));
 		Assert.assertTrue(testAdjList.contains(board.getCell(2, 3)));
-		
-		/*
-		|  |  |  |  | 
-		|  |  |  | !| 
-		|  |  |  |  | 
-		|  |  |  |  |		 
-		*/
 	
 	} //end rightEdgeCellAdjacencyTest
 	
@@ -163,8 +148,7 @@ class BoardTestsExp
 		Assert.assertTrue(testTargets.contains(board.getCell(0, 1)));
 		Assert.assertTrue(testTargets.contains(board.getCell(1, 0)));
 		Assert.assertTrue(testTargets.contains(board.getCell(1, 2)));
-		Assert.assertTrue(testTargets.contains(board.getCell(2, 2)));
-		
+		Assert.assertTrue(testTargets.contains(board.getCell(2, 1)));
 
 	} //end oneMoveMiddleTargetTest
 	
@@ -375,13 +359,6 @@ class BoardTestsExp
 		Assert.assertTrue(testTargets.contains(board.getCell(0, 2)));
 		Assert.assertTrue(testTargets.contains(board.getCell(2, 0)));
 		
-		/*
-		|[ |0 |! |  |
-		|0 |_ |  |! |
-		|! |  |! |  |
-		|  |! |  |  |
-		*/
-		
 	} //end twoMovesMixed1
 	
 	@Test
@@ -405,10 +382,3 @@ class BoardTestsExp
 	} //end twoMovesMixed2
 	
 } //end BoardTestsExp
-
-/*
-Test for behavior with at least one cell being flagged as occupied.  
-A player cannot move into an occupied cell.
-Test for behavior with at least one cell being flagged as a room.   
-A player used up all movement points upon entering a room.
-*/
