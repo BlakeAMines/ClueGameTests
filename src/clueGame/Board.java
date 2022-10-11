@@ -1,6 +1,9 @@
 package clueGame;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Board 
 {
@@ -34,9 +37,54 @@ public class Board
 		
 	} //end loadSetupConfig
 	
-	public void loadLayoutConfig()
+	public void loadLayoutConfig() throws BadConfigFormatException
 	{
+		int countRows = 0;
+		int countCols = 0;
 		
+		System.out.println(layoutConfigFile);
+		
+		String curLine = "";
+		
+		try
+		{
+			FileReader readFile = new FileReader(layoutConfigFile);
+			Scanner fileIn = new Scanner(readFile);
+			
+			curLine = fileIn.nextLine();
+			String[] rowList = curLine.split(",", 0);
+			
+			countCols = rowList.length;
+			
+			while(fileIn.hasNextLine())
+			{
+				curLine = fileIn.nextLine();
+				
+				rowList = curLine.split(",", 0);
+				
+				if(rowList.length != countCols)
+				{
+					throw new BadConfigFormatException();
+					
+				} //end if 
+				
+				for(int i = 0; i < rowList.length; i++)
+				{
+					System.out.print(rowList[i] + " ");					
+					
+				} //end for
+				
+				System.out.println("");
+				
+			} //end while
+		
+		} //end try
+		
+		catch(FileNotFoundException fileError)
+		{
+			System.out.println("Handle this more legitimately...");
+			
+		} //end catch
 		
 	} //end loadLayoutConfig
 	
@@ -48,8 +96,8 @@ public class Board
 	
 	public void setConfigFiles(String csvName, String txtName)
 	{
-		layoutConfigFile = csvName;
-		setupConfigFile = txtName;
+		layoutConfigFile = "data/" + csvName;
+		setupConfigFile = "data/" + txtName;
 		
 	} //end setConfigFiles
 	
